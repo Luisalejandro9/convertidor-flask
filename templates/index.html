@@ -3,308 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Divisas Venezuela</title>
+    <title>Convertidor de Moneda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Estilos base */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f5f5f5;
-            color: #333;
-            padding: 20px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            flex: 1;
-        }
-
-        /* Encabezados */
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 2rem;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        /* Sección de tasas */
-        .rates {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .rate-box {
-            flex: 1;
-            min-width: 250px;
-            text-align: center;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bcv {
-            background-color: #e6f7ff;
-            border: 1px solid #91d5ff;
-        }
-
-        .parallel {
-            background-color: #f6ffed;
-            border: 1px solid #b7eb8f;
-        }
-
-        .promedio {
-            background-color: #fff7e6;
-            border: 1px solid #ffd591;
-        }
-
-        /* Formulario */
-        form {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #444;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #1890ff;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #1890ff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #096dd9;
-        }
-
-        /* Resultados */
-        .results {
             max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            flex: 1;
         }
-
-        .result-item {
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 0.8rem;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
         }
-
-        .bcv-result {
-            background-color: #e6f7ff;
+        .form-control:focus, .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.25);
         }
-
-        .parallel-result {
-            background-color: #f6ffed;
+        .btn-primary {
+            padding: 0.8rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
-
-        .promedio-result {
-            background-color: #fff7e6;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13,110,253,0.3);
         }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-            color: #666;
+        .result-box {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .result-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0d6efd;
+            margin: 1rem 0;
+        }
+        .input-group-text {
+            border-radius: 10px 0 0 10px;
+            background-color: #e9ecef;
+            border: 2px solid #e9ecef;
+            color: #495057;
+            font-weight: 600;
+        }
+        .input-group .form-control {
+            border-radius: 0 10px 10px 0;
+        }
+        .quotes-box {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e9ecef;
+        }
+        .quotes-title {
             font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+            text-align: center;
         }
-
-        /* Media Queries para Responsive */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        .quote-item {
+            text-align: center;
+            padding: 0.5rem;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .quote-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-bottom: 0.2rem;
+        }
+        .quote-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0d6efd;
+        }
+        .conversion-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .conversion-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #e9ecef;
+            text-align: center;
+        }
+        .conversion-title {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        .conversion-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0d6efd;
+            margin-bottom: 0.5rem;
+        }
+        .conversion-rate {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+            border-top: 1px solid #dee2e6;
+        }
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
             .container {
-                padding: 15px;
+                margin: 1rem;
+                padding: 1rem;
             }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .rate-box {
-                min-width: 100%;
-            }
-
-            form {
-                padding: 15px;
-            }
-
-            .results {
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
+            .result-value {
                 font-size: 1.5rem;
             }
-
-            h2 {
-                font-size: 1.3rem;
+            .quotes-grid, .conversion-results {
+                grid-template-columns: 1fr;
             }
-
-            h3 {
-                font-size: 1.1rem;
-            }
-
-            .rate-box {
-                padding: 15px;
-            }
-
-            input, select, button {
-                padding: 10px;
+            .form-control, .form-select, .btn {
+                padding: 0.6rem;
             }
         }
-
-        /* Animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .rate-box, .result-item {
-            animation: fadeIn 0.5s ease-out;
+        @media (max-width: 576px) {
+            .container {
+                margin: 0.5rem;
+                padding: 0.75rem;
+            }
+            .row {
+                margin: 0;
+            }
+            .col-md-4 {
+                padding: 0.5rem;
+            }
+            .btn-primary {
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .quotes-grid, .conversion-results {
+                gap: 0.5rem;
+            }
+            .quote-item, .conversion-item {
+                padding: 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Calculadora de Divisas Venezuela</h1>
+        <h1 class="text-center mb-4">Convertidor de Moneda</h1>
         
-        <div class="rates">
-            <div class="rate-box bcv">
-                <h2>Tasa BCV </h2>
-                <p>1 USD = {{ bcv_rate }} Bs.</p>
-            </div>
-            <div class="rate-box parallel">
-                <h2>Tasa Paralela</h2>
-                <p>1 USD = {{ parallel_rate }} Bs.</p>
-            </div>
-            <div class="rate-box promedio">
-                <h2>Promedio</h2>
-                <p>1 USD = {{ promedio }} Bs.</p>
-            </div>
-        </div>
-        
-        <form method="post">
-            <div class="form-group">
-                <label for="amount">Cantidad:</label>
-                <input type="number" id="amount" name="amount" step="0.01" value="{{ amount }}" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="conversion_type">Tipo de conversión:</label>
-                <select id="conversion_type" name="conversion_type">
-                    <option value="usd_to_bs" {% if conversion_type == 'usd_to_bs' %}selected{% endif %}>USD a Bolívares</option>
-                    <option value="bs_to_usd" {% if conversion_type == 'bs_to_usd' %}selected{% endif %}>Bolívares a USD</option>
-                </select>
-            </div>
-            
-            <button type="submit">Convertir</button>
-        </form>
-        
-        {% if amount > 0 %}
-        <div class="results">
-            <h2>Resultados</h2>
-            
-            <div class="result-item bcv-result">
-                <h3>Según tasa BCV:</h3>
-                {% if conversion_type == 'usd_to_bs' %}
-                    <p>{{ amount }} USD = {{ bcv_result|round(2) }} Bs.</p>
-                {% else %}
-                    <p>{{ amount }} Bs. = {{ bcv_result|round(4) }} USD</p>
-                {% endif %}
-            </div>
-            
-            <div class="result-item parallel-result">
-                <h3>Según tasa Paralela:</h3>
-                {% if conversion_type == 'usd_to_bs' %}
-                    <p>{{ amount }} USD = {{ parallel_result|round(2) }} Bs.</p>
-                {% else %}
-                    <p>{{ amount }} Bs. = {{ parallel_result|round(4) }} USD</p>
-                {% endif %}
-            </div>
-            
-            <div class="result-item promedio-result">
-                <h3>Según promedio:</h3>
-                {% if conversion_type == 'usd_to_bs' %}
-                    <p>{{ amount }} USD = {{ promedio_result|round(2) }} Bs.</p>
-                {% else %}
-                    <p>{{ amount }} Bs. = {{ promedio_result|round(4) }} USD</p>
-                {% endif %}
+        {% if not result %}
+        <!-- Cotizaciones actuales (solo se muestra si no hay resultado) -->
+        <div class="quotes-box">
+            <div class="quotes-title">Cotizaciones Actuales</div>
+            <div class="quotes-grid">
+                <div class="quote-item">
+                    <div class="quote-label">BCV</div>
+                    <div class="quote-value">{{ bcv_rate }} VES</div>
+                </div>
+                <div class="quote-item">
+                    <div class="quote-label">Paralelo</div>
+                    <div class="quote-value">{{ parallel_rate }} VES</div>
+                </div>
+                <div class="quote-item">
+                    <div class="quote-label">Promedio</div>
+                    <div class="quote-value">{{ promedio }} VES</div>
+                </div>
             </div>
         </div>
         {% endif %}
+
+        <form method="POST" class="mb-4" id="conversionForm">
+            <div class="row g-3">
+                <div class="col-12 col-md-4">
+                    <label for="amount" class="form-label">Monto</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="currencySymbol">USD</span>
+                        <input type="number" step="0.01" class="form-control" id="amount" name="amount" required 
+                               value="{{ amount if amount else '' }}" placeholder="Ingrese el monto">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label for="from_currency" class="form-label">De</label>
+                    <select class="form-select" id="from_currency" name="from_currency" required>
+                        <option value="USD">Dólares (USD)</option>
+                        <option value="VES">Bolívares (VES)</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label for="to_currency" class="form-label">A</label>
+                    <select class="form-select" id="to_currency" name="to_currency" required>
+                        <option value="VES">Bolívares (VES)</option>
+                        <option value="USD">Dólares (USD)</option>
+                    </select>
+                </div>
+                <div class="col-12 text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Convertir</button>
+                </div>
+            </div>
+        </form>
+
+        {% if result %}
+        <div class="result-box">
+            <h3 class="text-center mb-3">Resultados de la Conversión</h3>
+            <div class="conversion-results">
+                <div class="conversion-item">
+                    <div class="conversion-title">BCV</div>
+                    <div class="conversion-value">{{ "%.2f"|format(result.bcv) }} {% if to_currency == 'VES' %}Bs{% else %}USD{% endif %}</div>
+                    <div class="conversion-rate">Tasa: {{ bcv_rate }} VES</div>
+                </div>
+                <div class="conversion-item">
+                    <div class="conversion-title">Paralelo</div>
+                    <div class="conversion-value">{{ "%.2f"|format(result.parallel) }} {% if to_currency == 'VES' %}Bs{% else %}USD{% endif %}</div>
+                    <div class="conversion-rate">Tasa: {{ parallel_rate }} VES</div>
+                </div>
+                <div class="conversion-item">
+                    <div class="conversion-title">Promedio</div>
+                    <div class="conversion-value">{{ "%.2f"|format(result.promedio) }} {% if to_currency == 'VES' %}Bs{% else %}USD{% endif %}</div>
+                    <div class="conversion-rate">Tasa: {{ promedio }} VES</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="footer">
+            &copy; 2023 DESARROLLADO POR LUIS ACOSTA
+        </div>
     </div>
-    <footer>
-        <p>&copy; 2025 DESARROLLADO POR LUIS ACOSTA</p>
-    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fromCurrency = document.getElementById('from_currency');
+            const toCurrency = document.getElementById('to_currency');
+            const currencySymbol = document.getElementById('currencySymbol');
+            
+            function updateCurrencySymbol() {
+                const selectedCurrency = fromCurrency.value;
+                currencySymbol.textContent = selectedCurrency === 'USD' ? 'USD' : 'Bs';
+            }
+            
+            function updateToCurrency() {
+                const fromValue = fromCurrency.value;
+                // Si se selecciona USD en "De", forzar VES en "A"
+                if (fromValue === 'USD') {
+                    toCurrency.value = 'VES';
+                } else {
+                    toCurrency.value = 'USD';
+                }
+            }
+            
+            function updateFromCurrency() {
+                const toValue = toCurrency.value;
+                // Si se selecciona VES en "A", forzar USD en "De"
+                if (toValue === 'VES') {
+                    fromCurrency.value = 'USD';
+                } else {
+                    fromCurrency.value = 'VES';
+                }
+                updateCurrencySymbol();
+            }
+            
+            // Event listeners para ambos selectores
+            fromCurrency.addEventListener('change', function() {
+                updateCurrencySymbol();
+                updateToCurrency();
+            });
+
+            toCurrency.addEventListener('change', function() {
+                updateFromCurrency();
+            });
+            
+            // Inicializar el símbolo de moneda
+            updateCurrencySymbol();
+        });
+    </script>
 </body>
 </html>
